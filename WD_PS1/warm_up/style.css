@@ -1,0 +1,56 @@
+
+@media screen {
+  body {
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    font-size: 4rem;
+    color: white;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    padding: 1rem;
+  }
+
+.float_block {
+  float: left;
+  width: 33.33%;
+}
+.floats {
+  width: 100%;
+  float: left;
+  overflow: hidden;
+  }
+
+
+.blocks {
+  font-size: 0;
+  }
+.inline_block {
+  display: inline-block;
+  width: 33.33%;
+}
+
+
+.flexbox {
+  display: flex;
+}
+.flex_block {
+flex: 1;
+}
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.grid_block {
+}
+
+}
