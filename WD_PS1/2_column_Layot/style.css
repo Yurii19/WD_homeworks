@@ -16,7 +16,6 @@ p {
   margin: 0;
   color: #dcdde1;
 }
-
 .main {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -27,7 +26,6 @@ p {
   min-height: 100%;
   margin-bottom: -60px;
   background-color: #487eb0;
-  /* border: 1px dotted red; */
 }
 .column-left {
   border-radius: 15px;
