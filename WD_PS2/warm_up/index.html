@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Warm_up_page</title>
+  <script  src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+  <h2 class="header">Welcome!</h2>
+  <input type="button" class="send" id="globalReload" value="RELOAD PAGE" onclick="reset()">
+
+  <div class="script-box">
+    <form name="calculate" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <input type="number" name="first_variable" id="fnum" placeholder="integer number">
+        <label class="lab-fnum" for="first_variable">Input 1st value</label>
+        <input type="number" class="second_variable" id="snum" placeholder="integer number">
+        <label class="lab-snum" for="second_variable">Input 2nd value</label>
+      </div>
+      <input type="reset" class="reload">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS" form="action" id="addition">
+      <div class="description">The app is count sum of all numers between 2 numbers received from user(range -99 99), that ending for 2,3,7.
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="sum-messege">Waiting for action</p>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <form name="calculate2" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <input type="number" name="first_variable" id="fnum" placeholder="seconds">
+        <label class="lab-fnum" for="first_variable">Input 1st value</label>
+        <input type="text" name="second_variable" id="snum" placeholder="hh:mm:ss">
+        <label class="lab-snum" for="second_variable">Input 2nd value</label>
+      </div>
+      <input type="reset" class="reload">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS" form="action" id="convert_time">
+      <div class="description">The app is convert seconds to fulltime and fulltimi to seconds
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="tc-messege">Waiting for action</p>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <form name="calculate3" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <input type="datetime-local" name="first_variable" id="fnum" placeholder="seconds">
+        <label class="lab-fnum" for="fnum">Input 1st value</label>
+        <input type="datetime-local" name="second_variable" id="snum" placeholder="hh:mm:ss">
+        <label class="lab-snum" for="second_variable">Input 2nd value</label>
+      </div>
+      <input type="reset" class="reload">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS" form="action" id="time_space">
+      <div class="description">The app is count time space between two dates
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="ts-messege">Waiting for action</p>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <form name="calculate4" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <input type="text" name="string_variable" id="fnum" placeholder="width_x_height">
+        <label class="lab-fnum" for="string_variable">Input a value</label>
+      </div>
+      <input type="reset" class="reload" id="deck_reset">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS"  id="chess_deck">
+      <div class="description">The app draw chess board with users size
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="paint-messege">Waiting for action</p>
+    </div>
+    <div id="name">
+    </div>
+    <div id="blank">
+    </div>
+  </div>
+
+  <div class="script-box">
+    <form name="calculate5" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <textarea rows="5" cols="30" name="string_variable" id="link_area" placeholder="Input text"></textarea>
+        <label class="lab-fnum" for="string_variable">Input a text</label>
+      </div>
+      <input type="reset" class="reload">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS >>"  id="links">
+      <div class="description">The app filter IP adress(es) and URL(s)
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="links-messege">Waiting for action</p>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <form name="calculate6" action="script.js" class="box-input" id="action">
+      <div class="input-wrapper">
+        <textarea rows="5" cols="30" name="string1_variable" id="marker_area" placeholder="Input text"></textarea>
+        <label class="lab-fnum" for="fnum">Input a text</label>
+        <input type="text" name="string2_variable" id="reg_exp">
+        <label for="string2_variable">Input expression</label>
+      </div>
+      <input type="reset" class="reload">
+    </form>
+    <div class="button-wrap">
+      <input type="button" class="send" value="<< PRESS"  id="marker">
+      <div class="description">The app is marking specified expression. Input values in left section of the block
+        input spaces
+      </div>
+    </div>
+    <div class="messenger">
+      <p class="mes-container" id="marker-messege">Waiting for action</p>
+    </div>
+  </div>
+</body>
+</html>
