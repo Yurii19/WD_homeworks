@@ -141,7 +141,7 @@ function markText() {
 	function sum() {
 		var num_one = document.calculate.fnum.value;
 		var num_two = document.calculate.snum.value;
-		var input_mold = /^-\d{1,2}$/;
+		var input_mold = /^-?\d{1,2}$/;
 		if (!input_mold.test(num_one) || !input_mold.test(num_two)) {
 			document.getElementById('sum-messege').innerHTML = 'Input correct value(s)';
 			return;
