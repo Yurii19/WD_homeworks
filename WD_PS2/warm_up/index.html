@@ -5,39 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm_up_page</title>
-  <script  src="script.js"></script>
+  
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
   <h2 class="header">Welcome!</h2>
-  <input type="button" class="send" id="globalReload" value="RELOAD PAGE" onclick="reset()">
+  <input type="button" class="send" id="global-reload" value="RELOAD PAGE">
 
-  <div class="script-box">
-    <form name="calculate" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate" class="box-input">
       <div class="input-wrapper">
-        <input type="number" name="first_variable" id="fnum" placeholder="integer number">
-        <label class="lab-fnum" for="first_variable">Input 1st value</label>
-        <input type="number" class="second_variable" id="snum" placeholder="integer number">
-        <label class="lab-snum" for="second_variable">Input 2nd value</label>
+        <input type="number" class="input_area" id="fnum" placeholder="integer number">
+        <label class="lab-fnum" for="fnum">Input 1st value</label>
+        <input type="number" class="input_area" id="snum" placeholder="integer number">
+        <label class="lab-snum" for="snum">Input 2nd value</label>
       </div>
       <input type="reset" class="reload">
     </form>
     <div class="button-wrap">
-      <input type="button" class="send" value="<< PRESS" form="action" id="addition">
+      <input type="submit" class="send" value="<< PRESS" form="calculate" id="addition">
       <div class="description">The app is count sum of all numers between 2 numbers received from user(range -99 99), that ending for 2,3,7.
       </div>
     </div>
     <div class="messenger">
       <p class="mes-container" id="sum-messege">Waiting for action</p>
     </div>
-  </div>
+  </section>
 
-  <div class="script-box">
-    <form name="calculate2" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate2" class="box-input" >
       <div class="input-wrapper">
-        <input type="number" name="first_variable" id="fnum" placeholder="seconds">
-        <label class="lab-fnum" for="first_variable">Input 1st value</label>
-        <input type="text" name="second_variable" id="snum" placeholder="hh:mm:ss">
+        <input type="number" class="input_area" id="sec" placeholder="seconds">
+        <label class="lab-fnum" for="sec">Input 1st value</label>
+        <input type="text" class="input_area" id="hrs" placeholder="hh:mm:ss">
         <label class="lab-snum" for="second_variable">Input 2nd value</label>
       </div>
       <input type="reset" class="reload">
@@ -50,15 +50,15 @@
     <div class="messenger">
       <p class="mes-container" id="tc-messege">Waiting for action</p>
     </div>
-  </div>
+  </section>
 
-  <div class="script-box">
-    <form name="calculate3" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate3" class="box-input">
       <div class="input-wrapper">
-        <input type="datetime-local" name="first_variable" id="fnum" placeholder="seconds">
-        <label class="lab-fnum" for="fnum">Input 1st value</label>
-        <input type="datetime-local" name="second_variable" id="snum" placeholder="hh:mm:ss">
-        <label class="lab-snum" for="second_variable">Input 2nd value</label>
+        <input type="datetime-local" class="input_area" id="f-date" placeholder="seconds">
+        <label class="lab-fnum" for="fDate">Input 1st value</label>
+        <input type="datetime-local" class="input_area" id="s-date" placeholder="hh:mm:ss">
+        <label class="lab-snum" for="sDate">Input 2nd value</label>
       </div>
       <input type="reset" class="reload">
     </form>
@@ -70,13 +70,13 @@
     <div class="messenger">
       <p class="mes-container" id="ts-messege">Waiting for action</p>
     </div>
-  </div>
+  </section>
 
-  <div class="script-box">
-    <form name="calculate4" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate4" class="box-input">
       <div class="input-wrapper">
-        <input type="text" name="string_variable" id="fnum" placeholder="width_x_height">
-        <label class="lab-fnum" for="string_variable">Input a value</label>
+        <input type="text" class="input_area" id="deck-format" placeholder="width_x_height">
+        <label class="lab-fnum" for="deck-format">Input a value</label>
       </div>
       <input type="reset" class="reload" id="deck_reset">
     </form>
@@ -88,17 +88,17 @@
     <div class="messenger">
       <p class="mes-container" id="paint-messege">Waiting for action</p>
     </div>
-    <div id="name">
-    </div>
-    <div id="blank">
-    </div>
+  </section>
+  <div id="name">
+  </div>
+  <div id="blank">
   </div>
 
-  <div class="script-box">
-    <form name="calculate5" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate5" class="box-input">
       <div class="input-wrapper">
-        <textarea rows="5" cols="30" name="string_variable" id="link_area" placeholder="Input text"></textarea>
-        <label class="lab-fnum" for="string_variable">Input a text</label>
+        <textarea rows="5" cols="30" class="input_area" id="link-area" placeholder="Input text"></textarea>
+        <label class="lab-fnum" for="link_area">Input a text</label>
       </div>
       <input type="reset" class="reload">
     </form>
@@ -110,15 +110,15 @@
     <div class="messenger">
       <p class="mes-container" id="links-messege">Waiting for action</p>
     </div>
-  </div>
+  </section>
 
-  <div class="script-box">
-    <form name="calculate6" action="script.js" class="box-input" id="action">
+  <section class="script-box">
+    <form name="calculate6" class="box-input" >
       <div class="input-wrapper">
-        <textarea rows="5" cols="30" name="string1_variable" id="marker_area" placeholder="Input text"></textarea>
-        <label class="lab-fnum" for="fnum">Input a text</label>
-        <input type="text" name="string2_variable" id="reg_exp">
-        <label for="string2_variable">Input expression</label>
+        <textarea rows="5" cols="30" class="input_area" id="marker-area" placeholder="Input text"></textarea>
+        <label class="lab-fnum" for="marker-area">Input a text</label>
+        <input type="text" class="input_area" id="reg-exp">
+        <label for="reg-exp">Input expression</label>
       </div>
       <input type="reset" class="reload">
     </form>
@@ -131,6 +131,7 @@
     <div class="messenger">
       <p class="mes-container" id="marker-messege">Waiting for action</p>
     </div>
-  </div>
+  </section>
+  <script  src="script.js"></script>
 </body>
 </html>

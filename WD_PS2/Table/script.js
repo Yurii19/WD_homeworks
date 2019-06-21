@@ -1,99 +1,72 @@
 window.onload = init;
-var sortCounter = 0;
-var nameCounter = 0;
+let sortFlag = false;
 
 function init() {
-	table_set = GOODS;
+	tableSet = GOODS;
 	fillTable();
 	search.addEventListener('input', searchByName);
-	category_sort.addEventListener('click', sortByCategory);
-	name_sort.addEventListener('click', sortByName);
-	category_select.addEventListener('change', sortBySelect);
+	category_select.addEventListener('change', filterBySelect);
+	tablehead.addEventListener('click', sortByProperty);
 }
 
 function searchByName() {
-	var word = document.getElementById('search').value;
+	let word = document.getElementById('search').value;
 	if (word == '') {
-		table_set = GOODS;
+		tableSet = GOODS;
 		fillTable();
 	}
-	var table_row = [];
-	for (var i = 0; i < GOODS.length; i++) {
-		if (GOODS[i].name == word) {
+	let tableRow = [];
+	for (let i = 0; i < GOODS.length; i++) {
+		if (GOODS[i].name.toLowerCase() == word.toLowerCase()) {
 			document.getElementById('table_body').innerHTML = '';
-			table_row.push(GOODS[i]);
-			table_set = table_row;
+			tableRow.push(GOODS[i]);
+			tableSet = tableRow;
 			fillTable();
 		}
 	}
 }
 
-function sortBySelect() {
-	var goods_selected = [];
+function filterBySelect() {
+	let goodsSelected = [];
 	document.getElementById('table_body').innerHTML = '';
-	var value_selected = document.getElementById('category_select').value;
-	if (value_selected == '') {
-		table_set = GOODS;
+	const valueSelected = document.getElementById('category_select').value;
+	if (valueSelected == '') {
+		tableSet = GOODS;
 		fillTable();
 	} else {
-		for (var i = 0; i < GOODS.length; i++) {
-			for (var variable in GOODS[i]) {
-				if (GOODS[i][variable] == value_selected) {
-					goods_selected.push(GOODS[i]);
+		for (let i = 0; i < GOODS.length; i++) {
+			for (let variable in GOODS[i]) {
+				if (GOODS[i][variable] == valueSelected) {
+					goodsSelected.push(GOODS[i]);
 				}
 			}
 		}
-		table_set = goods_selected;
+		tableSet = goodsSelected;
 		fillTable();
 	}
 }
 
-function sortByName() {
-	nameCounter++;
-	document.getElementById('table_body').innerHTML = '';
-	if (nameCounter % 2 == 0) {
-		table_set.sort(function(a, b) {
-			if (a.name > b.name) {
+ function sortByProperty(eventSource){
+ 	sortFlag = sortFlag ? false : true;
+ 	const key = eventSource.target.id.split('_');
+ 	const keySort = key[0];
+	
+	if (sortFlag) {
+		tableSet.sort(function(a, b) {
+			if (a[keySort] > b[keySort]) {
 				return 1;
 			}
-			if (a.name < b.name) {
+			if (a[keySort] < b[keySort]) {
 				return -1;
 			}
 			return 0;
 		});
 	} else {
-		table_set.sort(function(a, b) {
-			if (a.name > b.name) {
+		tableSet.sort(function(a, b) {
+			if (a[keySort] > b[keySort]) {
 				return -1;
 			}
-			if (a.name < b.name) {
-				return 1;
-			}
-			return 0;
-		});
-	}
-	fillTable();
-}
-
-function sortByCategory() {
-	sortCounter++;
-	document.getElementById('table_body').innerHTML = '';
-	if (sortCounter % 2 == 0) {
-		table_set.sort(function(a, b) {
-			if (a.category > b.category) {
-				return 1;
-			}
-			if (a.category < b.category) {
-				return -1;
-			}
-			return 0;
-		});
-	} else {
-		table_set.sort(function(a, b) {
-			if (a.category > b.category) {
-				return -1;
-			}
-			if (a.category < b.category) {
+			if (a[keySort] < b[keySort]) {
 				return 1;
 			}
 			return 0;
@@ -103,27 +76,28 @@ function sortByCategory() {
 }
 
 function fillTable() {
-	var table_parent = document.getElementById('table_body');
-	var total_price = 0;
-	for (var i = 0; i < table_set.length; i++) {
-		var table_row = document.createElement('tr');
-		table_parent.appendChild(table_row);
-		var local_price = 1;
-		for (var col in table_set[i]) {
-			var table_cell = document.createElement('td');
-			table_row.appendChild(table_cell);
-			table_cell.innerHTML = table_set[i][col];
+	document.getElementById('table_body').innerHTML = '';
+	let tableParent = document.getElementById('table_body');
+	let totalPrice = 0;
+	for (let i = 0; i < tableSet.length; i++) {
+		var tableRow = document.createElement('tr');
+		tableParent.appendChild(tableRow);
+		let localPrice = 1;
+		for (let col in tableSet[i]) {
+			let tableCell = document.createElement('td');
+			tableRow.appendChild(tableCell);
+			tableCell.innerHTML = tableSet[i][col];
 			if (col == 'price') {
-				local_price *= table_set[i][col];
-				table_cell.innerHTML += '$';
+				localPrice *= tableSet[i][col];
+				tableCell.innerHTML += '$';
 			}
 			if (col == 'amount') {
-				local_price *= table_set[i][col];
+				localPrice *= tableSet[i][col];
 			}
 		}
-		total_price += local_price;
+		totalPrice += localPrice;
 	}
-	document.getElementById('total').innerHTML = total_price + '$';
+	document.getElementById('total').innerHTML = totalPrice + '$';
 }
 
 const GOODS = [{
