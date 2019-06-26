@@ -107,9 +107,9 @@ function markText() {
 			let row = document.createElement('div');
 			row.className = 'deckrow';
 			blank.appendChild(row);
-			for (var j = 0; j < height; j++) {
+			for (let j = 0; j < height; j++) {
 				let cell = document.createElement('div');
-				cell .className = (i + j) % 2 == 0 ? 'cell-dark': 'cell-light';
+				cell .className = (i + j) % 2 === 0 ? 'cell-dark': 'cell-light';
 				row.appendChild(cell);
 			}
 		}
@@ -167,16 +167,18 @@ function markText() {
 	}
 
 	function timeConverter() {
-		let seconds = document.getElementById('sec').value;
-		const hours = document.getElementById('hrs').value;
+		let timeValue = document.getElementById('sec').value;
+		// const hours = document.getElementById('hrs').value;
 		let report = "Input a value";
 		const regHrs = /^\d{2}:\d{2}:\d{2}$/;
 		const regSec = /^\d+$/;
-		if (!regSec.test(seconds)&!regHrs.test(hours) ){
+		if (!regSec.test(timeValue)&!regHrs.test(timeValue) ){
 			report = 'Input correct value';
+			document.getElementById('tc-messege').innerHTML = report;
+			return 0;
 		}
-		if (regSec.test(seconds) & hours == "") {
-			seconds = seconds % (3600*24);
+		if (regSec.test(timeValue)) {
+			seconds = timeValue % (3600*24);
 			let hrs = Math.floor(seconds / 3600);
 			let min = Math.floor((seconds % 3600) / 60);
 			let sec = seconds % 60;
@@ -189,14 +191,14 @@ function markText() {
 			if (sec < 10) {
 				sec = '0' + sec;
 			}
-			report = 'Result is : ' + hrs + ':' + min + ':' + sec;
+			report = 'Result is : ' + hrs + ':' + min + ':' + sec + ' fulltime';
 		}
 
-		if (regHrs.test(hours) & seconds == "") {
-			const fulltime = hours.split(':');
+		if (regHrs.test(timeValue)) {
+			const fulltime = timeValue.split(':');
 			let res = 0;
 			res += parseInt(fulltime[0]) * 3600 + parseInt(fulltime[1]) * 60 + parseInt(fulltime[2]);
-			report = 'Result is : ' + res;
+			report = 'Result is : ' + res + ' seconds';
 		}
 		document.getElementById('tc-messege').innerHTML = report;
 	}

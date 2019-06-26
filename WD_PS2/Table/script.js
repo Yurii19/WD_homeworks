@@ -12,14 +12,13 @@ function init() {
 function searchByName() {
 	let word = document.getElementById('search').value;
 	if (word == '') {
-		tableSet = GOODS;
 		fillTable();
 	}
 	let tableRow = [];
-	for (let i = 0; i < GOODS.length; i++) {
-		if (GOODS[i].name.toLowerCase() == word.toLowerCase()) {
+	for (let i = 0; i < tableSet.length; i++) {
+		if (tableSet[i].name.toLowerCase() == word.toLowerCase()) {
 			document.getElementById('table_body').innerHTML = '';
-			tableRow.push(GOODS[i]);
+			tableRow.push(tableSet[i]);
 			tableSet = tableRow;
 			fillTable();
 		}
