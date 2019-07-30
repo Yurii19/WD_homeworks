@@ -7,7 +7,7 @@ body {
 }
 label{
   font-family: consolas, sans-serif;
-  color: #ff3838;
+  color: #9b59b6;
   display:block;
 }
 #global-reload {
@@ -65,7 +65,7 @@ label{
   outline: none;
   padding: 20px;
   margin: 15px;
-  border-radius: 30px;
+  border-radius: 60%;
   border: 3px solid #c44569;
   color: #c44569;
 }
@@ -81,7 +81,7 @@ label{
 }
 .mes-container {
   padding: 10px;
-  color: #e84118;
+  color: #6F1E51;
   font-family: consolas, sans-serif;
 }
 .messenger {

@@ -4,11 +4,11 @@ function init() {
 	const additionNumbers = document.getElementById('addition');
 	additionNumbers.onclick = addition;
 
-	const convert_time = document.getElementById('convert_time');
-	convert_time.onclick = timeConverter;
+	const convertTime = document.getElementById('convert_time');
+	convertTime.onclick = timeConverter;
 
-	const space_of_time = document.getElementById('time_space');
-	space_of_time.onclick = timeSpace
+	const spaceOfTime = document.getElementById('time_space');
+	spaceOfTime.onclick = timeSpace
 
 	const deckButton = document.getElementById('chess_deck');
 	deckButton.onclick = paintDeck;
@@ -26,15 +26,16 @@ function init() {
 }
 
 function markText() {
-	let text = document.getElementById('marker-area').value;
+	const text = document.getElementById('marker-area').value;
 	const reg = document.getElementById('reg-exp').value;
 	const regExp = new RegExp(reg, 'g');
 	const matchContainer = text.match(regExp);
 	const uniqueMatchContainer = Array.from(new Set(matchContainer));
-		for (let i = 0; i < uniqueMatchContainer.length; i++) {
-			text = text.replace(new RegExp(uniqueMatchContainer[i], 'g'), "<mark>" + uniqueMatchContainer[i] + "</mark>")
-		}
-		document.getElementById('marker-messege').innerHTML = text;
+	if (text === ''||reg === ''){
+		document.getElementById('marker-messege').innerHTML = 'Input correct value(s)';
+		return;
+	}
+	document.getElementById('marker-messege').innerHTML = text.replace(new RegExp(reg, 'ig'), '<mark>$&</mark>');
 	}
 
 	function linkFilter() {
@@ -46,6 +47,7 @@ function markText() {
 		const regNumber = /^\s*\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
 		let regUrlOne = /^\s*https?:\/\/\w+\.\S+$/;
 		const regUrlTwo = /^\s*www\.\w+\.\S+$/;
+		const regUrlThree = /^\s*\w+\.\w+\S+$/;
 		const regUrlPrefix = /^https?:\/\//;
 		for (let i = 0; i < arrayOfLinks.length; i++) {
 			arrayOfLinks[i] = arrayOfLinks[i].replace(/^\s+/,'');
@@ -56,12 +58,16 @@ function markText() {
 				urlsContainer.push(temp);
 			}
 			if (regNumber.test(arrayOfLinks[i])) {
+				console.log('asdas');
 				const ip = arrayOfLinks[i].split(/\./);
 				if (parseInt(ip[0]) < 256 & parseInt(ip[1]) < 256 & parseInt(ip[2]) < 256 & parseInt(ip[3]) < 256) {
 					ipsContainer.push(arrayOfLinks[i]);
 				}
 			}
 			if (regUrlTwo.test(arrayOfLinks[i])){
+				urlsContainer.push(arrayOfLinks[i]);
+			}
+			if (regUrlThree.test(arrayOfLinks[i])){
 				urlsContainer.push(arrayOfLinks[i]);
 			}
 		}
@@ -72,16 +78,18 @@ function markText() {
 			let reportRef = document.createElement('a');
 			reportArea.appendChild(reportRef);
 			reportRef.target = 'blank';
-			reportRef.href = "";
+			
 			reportRef.innerHTML = ipsContainer[i] +'<br>';
+			reportRef.href = "http://" + ipsContainer[i];
 		}
 		for (let i = 0; i < urlsContainer.length; i++) {
 			let reportArea = document.getElementById('links-messege');
 			let linkRef = document.createElement('a');
 			reportArea.appendChild(linkRef);
 			linkRef.target = 'blank';
-			linkRef.href = "";
 			linkRef.innerHTML = urlsContainer[i] + '<br>';
+			linkRef.href = "http://" + urlsContainer[i];
+			
 		}
 	}
 
@@ -168,7 +176,6 @@ function markText() {
 
 	function timeConverter() {
 		let timeValue = document.getElementById('sec').value;
-		// const hours = document.getElementById('hrs').value;
 		let report = "Input a value";
 		const regHrs = /^\d{2}:\d{2}:\d{2}$/;
 		const regSec = /^\d+$/;

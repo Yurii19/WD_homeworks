@@ -12,6 +12,7 @@ function init() {
 function searchByName() {
 	let word = document.getElementById('search').value;
 	if (word == '') {
+		filterBySelect();
 		fillTable();
 	}
 	let tableRow = [];
