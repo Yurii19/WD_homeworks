@@ -11,18 +11,21 @@ function init() {
 
 function searchByName() {
 	let word = document.getElementById('search').value;
-	if (word == '') {
-		filterBySelect();
-		fillTable();
-	}
 	let tableRow = [];
 	for (let i = 0; i < tableSet.length; i++) {
-		if (tableSet[i].name.toLowerCase() == word.toLowerCase()) {
+
+		if (tableSet[i].name.toLowerCase() === word.toLowerCase()) {
 			document.getElementById('table_body').innerHTML = '';
 			tableRow.push(tableSet[i]);
 			tableSet = tableRow;
 			fillTable();
+		} else {
+			document.getElementById('table_body').innerHTML = '';
 		}
+	}
+	if (word === '') {
+		filterBySelect();
+		fillTable();
 	}
 }
 
@@ -30,13 +33,13 @@ function filterBySelect() {
 	let goodsSelected = [];
 	document.getElementById('table_body').innerHTML = '';
 	const valueSelected = document.getElementById('category_select').value;
-	if (valueSelected == '') {
+	if (valueSelected === '') {
 		tableSet = GOODS;
 		fillTable();
 	} else {
 		for (let i = 0; i < GOODS.length; i++) {
 			for (let variable in GOODS[i]) {
-				if (GOODS[i][variable] == valueSelected) {
+				if (GOODS[i][variable] === valueSelected) {
 					goodsSelected.push(GOODS[i]);
 				}
 			}
@@ -87,11 +90,11 @@ function fillTable() {
 			let tableCell = document.createElement('td');
 			tableRow.appendChild(tableCell);
 			tableCell.innerHTML = tableSet[i][col];
-			if (col == 'price') {
+			if (col === 'price') {
 				localPrice *= tableSet[i][col];
 				tableCell.innerHTML += '$';
 			}
-			if (col == 'amount') {
+			if (col === 'amount') {
 				localPrice *= tableSet[i][col];
 			}
 		}
