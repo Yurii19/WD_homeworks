@@ -1,13 +1,24 @@
 
 $(document).ready(function() {
-	$('header').attr('id', 'anchor-top');
-	const headTop = $('#anchor-top').offset();
+	const headTop = $('html').offset();
+
 	$("#move-up").click( function(){
-		$("html,body").animate({ scrollTop: headTop.top}, 500);});
+		$("html,body").animate({ scrollTop: headTop.top}, 500);
+	});
+
+	$(document).scroll(function() {
+		const displacement = $('html').scrollTop();
+		if (displacement >= 50){
+			$('#move-up').removeClass('hide');
+		} else {
+			$('#move-up').addClass('hide');
+		}
+	});
 	const $menu = $('body>header>nav').children('span');//initialization array of buttons
 	$('.butmenu').attr('id', 'anchor-about');
 	const $about = $('#anchor-about').offset();
 	$($menu[1]).children('a').attr('href', '#anchor-about');
+
 	$($menu[1]).click( function(){
 		$('html, body').animate({scrollTop: $about.top}, 500);
 	});

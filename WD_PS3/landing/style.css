@@ -30,7 +30,7 @@ a {
   padding-left: 20px;
 }
 .menuref {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 .logo {
   font-weight: bold;
@@ -143,6 +143,7 @@ a {
   margin-bottom: 50px;
 }
 .send-email {
+  outline: none;
   font-size:1.4em;
   color: white;
   width: 230px;
@@ -181,11 +182,28 @@ main {
   background-color:;
 }
 .inp-radio {
-margin-top: 14px;
+  margin-top: 14px;
 }
 .wrap-container {
   margin-top: 10px;
   width: 45%;
   height: 5vh;
   background-color:white ;
+}
+
+#move-up {
+  position: fixed;
+  opacity: 0.7;
+  font-size: 1.2em;
+  color: #05c46b;
+  background-color: #ffdd59;
+  outline: none;
+  border-radius: 15px;
+  border-style: none;
+}
+#move-up:active {
+  opacity: 0;
+}
+.hide{
+  visibility: hidden;
 }

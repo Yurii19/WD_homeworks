@@ -27,11 +27,15 @@
 }
 
 .wrapper {
-  margin-left: 100px;
+  position: relative;
+  display: inline-block;
   width: 400px;
   background-color: white;
   border-radius: 9px;
   border: 2px solid #c7ecee;
+}
+.wrapper:hover {
+ border: 2px solid #2980b9;
 }
 
 .arrow {
@@ -62,4 +66,14 @@ i{
 body {
   height: 99vh;
   border: 2px solid grey;
+}
+.base {
+  position: absolute;
+  margin-left: 100px;
+  /* border: 2px solid blue;*/
+  display: inline-block;
+}
+.content {
+  font-family: sans-serif;
+  margin: 150px 50px 0 50px;
 }

@@ -2,22 +2,21 @@
 $(document).ready(function() {
 	let opened = false;
 	let menuCellWrapper = '<div class="cell"><div class="cell_pic"></div><div class="cell_name"></div></div>';
-	$("body").append("<div class='wrapper'><div class='drop-head'></div></div>");
-	$("body>div>div").append(menuCellWrapper).append('<p class="arrow"><i>▼</i></p>');
-	$("body>div").append("<ul></ul>");
-	const cellContent = $("body>div>div>div").children();
+	$(".base").append("<div class='wrapper'><div class='drop-head'></div></div>");
+	$(".base>div>div").append(menuCellWrapper).append('<p class="arrow"><i>▼</i></p>');
+	$(".base>div").append("<ul></ul>");
+	const cellContent = $(".base>div>div>div").children();
 	$(cellContent[1]).append('<p>Select game</p>');
 	
-	
-	$('i').bind('click', function(event) {
+	$('.drop-head').bind('click', function(event) {
 		if(opened){
-			$("body>div>ul").empty();
+			$(".base>div>ul").empty();
 			opened = false;
 			return;
 		}
 		for (let i in GAMES){
 			const id = 'select-option' + i;
-			$("body>div>ul").append('<li id="' + id + '"></li>');
+			$(".base>div>ul").append('<li id="' + id + '"></li>');
 			$('#' + id).append(menuCellWrapper);
 			const liUnits = $('#' + id +'>div').children('div');
 			$(liUnits[1]).append('<p>'+GAMES[i].fullName+'</p>');  		
@@ -26,10 +25,18 @@ $(document).ready(function() {
 		opened = true;
 	}); 
 
-	$("body").on('click','li', function(event) {
+	$("*").bind('click', (event)=>{
+		if(event.target.nodeName === 'BODY'){
+			console.log('work');
+			$(".base>div>ul").empty();
+			opened = false;
+		}
+	});
+
+	$(".base").on('click','li', function(event) {
 		const selected = $(this).children('div').clone();
-		$("body>div>div>div").replaceWith(selected);
-		$("body>div>ul").empty();
+		$(".base>div>div>div").replaceWith(selected);
+		$(".base>div>ul").empty();
 		opened = false;
 	});
 
