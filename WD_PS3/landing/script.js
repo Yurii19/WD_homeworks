@@ -14,11 +14,19 @@ $(document).ready(function() {
 			$('#move-up').addClass('hide');
 		}
 	});
+
 	const $menu = $('body>header>nav').children('span');//initialization array of buttons
+	
+	$('main').attr('id', 'anchor-products');
+	const $products = $('#anchor-products').offset();
+	$($menu[0]).children('a').attr('href', '#anchor-products');
+	$($menu[0]).click( function(){
+		$('html, body').animate({scrollTop: $products.top}, 500);
+	});
+
 	$('.butmenu').attr('id', 'anchor-about');
 	const $about = $('#anchor-about').offset();
 	$($menu[1]).children('a').attr('href', '#anchor-about');
-
 	$($menu[1]).click( function(){
 		$('html, body').animate({scrollTop: $about.top}, 500);
 	});

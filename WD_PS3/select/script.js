@@ -8,7 +8,7 @@ $(document).ready(function() {
 	const cellContent = $(".base>div>div>div").children();
 	$(cellContent[1]).append('<p>Select game</p>');
 	
-	$('.drop-head').bind('click', function(event) {
+	$('.drop-head').on('click', function(event) {
 		if(opened){
 			$(".base>div>ul").empty();
 			opened = false;
@@ -27,7 +27,6 @@ $(document).ready(function() {
 
 	$("*").bind('click', (event)=>{
 		if(event.target.nodeName === 'BODY'){
-			console.log('work');
 			$(".base>div>ul").empty();
 			opened = false;
 		}
