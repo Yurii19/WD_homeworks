@@ -72,14 +72,17 @@ body {
   border: 2px solid grey;
 }
 
-.base {
+.drop-container {
   position: absolute;
   margin-left: 100px;
-  /* border: 2px solid blue;*/
   display: inline-block;
 }
 
 .content {
   font-family: sans-serif;
   margin: 150px 50px 0 50px;
+}
+
+.hidden {
+  display: none;
 }
