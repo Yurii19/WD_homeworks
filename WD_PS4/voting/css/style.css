@@ -1,0 +1,35 @@
+
+html {
+	font-family: sans-serif;
+}
+#vote-id{
+	width: 140px;
+	display: inline-block;
+	margin: 30px;
+}
+#vote-results {
+	width: 140px;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	/*border: 1px solid red;*/
+	padding-left: 30px;
+}
+.button-container {
+	padding: 10px 0 10px 30px;
+	margin: 5px;
+	background-color: #c7ecee;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+.button-container:hover{
+	background-color: #f6e58d;
+}
+.error_message{
+	color: red;
+}
+
+.info_message {
+	color: blue;
+}
