@@ -7,7 +7,7 @@ isset($_SESSION['visit_number']) ? $_SESSION['visit_number']++ : $_SESSION['visi
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Warm up</title>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
@@ -95,17 +95,20 @@ isset($_SESSION['visit_number']) ? $_SESSION['visit_number']++ : $_SESSION['visi
     <input class="input-wrap" type="submit" name="chess_submit">
   </form>
   <?php 
-  echo '<h3>'.$_SESSION['format'].'</h3>';
-  if (isset($_SESSION['chess_deck']) & $_SESSION['format']!= ''){
+  if (isset($_SESSION['format'])){
+    echo '<h3>'.$_SESSION['format'].'</h3>';
+  }
+  
+  if (isset($_SESSION['chess_deck']) & isset($_SESSION['format'])){
     echo $_SESSION['chess_deck'];
-    $_SESSION['format'] = '';
+    unset($_SESSION['format']);
   }
   ?>
 </section>
 
 <section class="script-box">
   <h3 class="script-header">Task #5:</h3>
-   <small>Script count the sum of numbers the received number </small>
+   <small>Script count the sum of digits the received number </small>
   <form action="script.php" method="post">
     <div class="input-wrap">
       <input type="number" class="input_area" name="number_to_sum">
@@ -155,7 +158,7 @@ isset($_SESSION['visit_number']) ? $_SESSION['visit_number']++ : $_SESSION['visi
   </form>
   <?php 
   if (isset($_SESSION['report_text'][0])) {
-    echo '<p> Numbers of rows : '.$_SESSION['report_text'][0].'; Numbers of letters : '.$_SESSION['report_text'][1].'; Numbers of spaces : '.$_SESSION['report_text'][2].'</p>';
+    echo '<p> Numbers of rows : '.$_SESSION['report_text'][0].'; number of characters : '.$_SESSION['report_text'][1].'; numbers of spaces : '.$_SESSION['report_text'][2].'</p>';
     $_SESSION['report_text'] = '';
   }
   ?>

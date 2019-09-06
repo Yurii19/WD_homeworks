@@ -6,6 +6,7 @@ session_start();
 <head>
 	<meta charset="UTF-8">
 	<title>Voting chart</title>
+
 </head>
 <body>
 	<div id="piechart">

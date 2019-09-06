@@ -5,7 +5,6 @@ body, html {
 }
 h1 {
   padding-left: 40px;
- /* text-align: center;*/
 }
 .script-header {
   font-family: sans-serif;
@@ -18,14 +17,12 @@ h1 {
 a{
   cursor: pointer;
   color: #C4E538;
- /* border-bottom: 2px solid white;*/
 }
 .script-box {
   border-bottom: 2px solid red;
   padding: 10px 40px 0 40px;
   color: #C4E538;
   background-color: #30336b;
-  /*display: flex;*/
 }
 .input_area {
   padding: 3px;
@@ -37,9 +34,7 @@ a{
   float: left;
 }
 form {
-  /*padding-bottom: 40px;*/
   height: 50px;
- /* border: 1px dotted white;*/
 }
 label {
   margin-top: 10px;

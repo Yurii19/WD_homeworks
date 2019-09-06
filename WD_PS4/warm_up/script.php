@@ -30,16 +30,9 @@ if (isset($_GET['chess_submit'])) {
 
 if (isset($_POST['sum_submit'])){
 	$the_number = $_POST['number_to_sum'];
-	$pos_number = abs($the_number);
-	$result = 0;
-	for ($i = 0; $i <= $pos_number; $i++) { 
-		$result += $i;
-	}
-	if ($the_number < 0) {
-		$result *= -1;
-	}
-	$_SESSION['total'] = $result;
-	$_SESSION['total_flag'] = true;
+	$pos_number = (string)abs($the_number);
+	$result = str_split($pos_number);
+	$_SESSION['total'] = array_sum($result);
 	header('Location: index.php'); 
 }
 
@@ -61,9 +54,7 @@ if (isset($_POST['arr_submit'])){
 if (isset($_POST['text_submit'])){
 	$text = $_POST['text'];
 	$rows_number = count(preg_split('/\n/', $text));
-	// $text2 = preg_replace('/\s/', '', $text);
-	// echo $text2.'<br/>'.$_POST['text'].'<br/>'.strlen($_POST['text']).'<br/>'.strlen($text2).iconv_strlen($text);
-	$chars_numbers = iconv_strlen($text);
+	$chars_numbers = iconv_strlen($text) - ($rows_number - 1) * 2;
 	$spaces_number = substr_count($text, ' ');
 	$_SESSION['report_text'] = array($rows_number, $chars_numbers, $spaces_number, $text);
 	header('Location: index.php');

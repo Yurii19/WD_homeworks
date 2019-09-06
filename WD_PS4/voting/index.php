@@ -13,7 +13,7 @@ session_start();
 		
 	</div>
 	<form id="bulletin" action="handler.php" method="POST">
-		<h3>Who do you think would be the best king(qeen) of Westeros ?</h3>
+		<h2 class="head">Who do you think would be the best king(qeen) of Westeros ?</h2>
 		<div class="button-container">
 			<input type="radio" id="bran" name="applicant" value="Bran">
 			<label for="bran">Bran Stark</label>
@@ -35,8 +35,8 @@ session_start();
 			<label for="tyrion">Tyrion Lannister</label>
 		</div>
 		<div class="controls">
-			<input type="submit" value="Vote" name="vote-submit" id="vote-id">
-			<input type="submit" id="vote-results" value="Show results" name="result">
+			<input class="control" type="submit" value="Vote" name="vote-submit" id="vote-id">
+			<input class="control" type="submit" id="vote-results" value="Show results" name="result">
 		</div>
 		<?php 
 		if (isset($_SESSION['voting_report'])){

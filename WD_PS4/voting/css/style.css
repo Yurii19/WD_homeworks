@@ -1,30 +1,61 @@
 
+@font-face {
+  font-family:"Game of Thrones";
+  src: url("../fonts/Game of Thrones.ttf");
+}
 html {
-	font-family: sans-serif;
+	
 }
 #vote-id{
-	width: 140px;
 	display: inline-block;
 	margin: 30px;
 }
+
 #vote-results {
-	width: 140px;
+
 }
+#vote-id:hover {
+border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+#vote-results:hover {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
 form{
 	display: flex;
 	flex-direction: column;
-	/*border: 1px solid red;*/
 	padding-left: 30px;
 }
+.control {
+	font-size: 1.4em;
+	color: #c19a49;
+	background-color: #353b48;
+	font-family:  "EB Garamond", serif;
+	width: 240px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	outline: none;
+	border-style: none;
+	transition: 0.3s linear 0s;
+	/*padding: 5px 30px 5px 30px;*/
+}
+.control:hover {
+	color: #f1c40f;
+}
 .button-container {
-	padding: 10px 0 10px 30px;
+	font-family: "Game of Thrones", serif;
+	color: #d3bb89;
+	transition: 0.9s linear 0s;
+	padding: 15px 0 15px 30px;
 	margin: 5px;
-	background-color: #c7ecee;
+	background-color: #353b48;
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 }
 .button-container:hover{
-	background-color: #f6e58d;
+	background-color: #636e72;
 }
 .error_message{
 	color: red;
@@ -33,3 +64,9 @@ form{
 .info_message {
 	color: blue;
 }
+
+.checked {
+	padding-left: 160px;
+	transition: 0.9s linear 0.1s;
+	}
+	
