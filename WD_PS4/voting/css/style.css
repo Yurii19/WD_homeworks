@@ -1,7 +1,7 @@
 
 @font-face {
-  font-family:"Game of Thrones";
-  src: url("../fonts/Game of Thrones.ttf");
+	font-family:"Game of Thrones";
+	src: url("../fonts/Game of Thrones.ttf");
 }
 html {
 	
@@ -15,7 +15,7 @@ html {
 
 }
 #vote-id:hover {
-border-top-left-radius: 20px;
+	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 }
 #vote-results:hover {
@@ -68,5 +68,7 @@ form{
 .checked {
 	padding-left: 160px;
 	transition: 0.9s linear 0.1s;
-	}
-	
+}
+label {
+	-webkit-user-select: none;
+}

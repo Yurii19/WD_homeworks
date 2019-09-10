@@ -4,14 +4,6 @@ session_start();
 
 $filename = 'votes.json';
 
-if (!file_exists($filename)&isset($_POST['vote-submit'])&isset($_POST['applicant'])) {
-	$votes = array(	'Name'=>'Numbers of votes', 'Bran'=> 0,	'Sansa'=> 0, 'Jon' => 0, 'Daenerys' => 0, 'Tyrion' => 0,);
-	file_put_contents($filename, json_encode($votes));
-	addVote($_POST['applicant']);
-	header('Location: index.php');
-	return;
-}
-
 if (isset($_POST['vote-submit'])) {
 	if (isset($_POST['applicant'])) {
 		$time_passed = time() - filemtime($filename);
@@ -21,7 +13,10 @@ if (isset($_POST['vote-submit'])) {
 			header('Location: index.php');
 			return;
 		}
-		addVote($_POST['applicant']);
+		addVote($_POST['applicant'], $filename);
+		if (checkErrorJson()) {
+			return;
+		};
 		header('Location: index.php');
 	} else {
 		header('Location: index.php');
@@ -30,6 +25,9 @@ if (isset($_POST['vote-submit'])) {
 
 if (isset($_POST['result'])) {
 	$json_votes = readJson($filename);
+	if (checkErrorJson()) {
+		return;
+	};
 	$table = [];
 	foreach ($json_votes as $key => $value) {
 		$str_temp = $key.','.$value;
@@ -39,10 +37,10 @@ if (isset($_POST['result'])) {
 	header('Location: chart.php');
 }
 //
-function addVote($recipient){
-	$json_votes = readJson($GLOBALS["filename"]);
+function addVote($recipient, $file){
+	$json_votes = readJson($file);
 	$json_votes[$recipient]++;
-	file_put_contents($GLOBALS["filename"], json_encode($json_votes));
+	file_put_contents($file, json_encode($json_votes));
 	$_SESSION['voting_report'] = '<p class="info_message">Your vote is counted.</p>';
 	return 0;
 }
@@ -52,4 +50,12 @@ function readJson($name){
 	return json_decode($file, TRUE);
 }
 
+function checkErrorJson() {
+	if ( json_last_error() > 0) {
+		$res = json_last_error_msg();
+		header('Location: error.php?err-mess='.$res);
+		return true;
+	}
+	return false;
+}
 ?>

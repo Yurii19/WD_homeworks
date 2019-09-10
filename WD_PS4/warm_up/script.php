@@ -1,14 +1,37 @@
 <?php
 
 session_start();
-
-if (isset($_FILES) & count($_FILES) > 0){
-	$target_dir = "load/".$_FILES['uploadfile']['name'];
+if ( isset($_POST['dawnload'])) {
+	$dir =  'load'.DIRECTORY_SEPARATOR;
+	$target_dir = $dir.$_FILES['uploadfile']['name'];
 	move_uploaded_file($_FILES['uploadfile']['tmp_name'], $target_dir);
-	$mess = scandir("load/");
-	$_SESSION['loader'] = true;
-	header('Location: index.php'); 
+	header('Location: index.php');
+}
 
+if (isset($_POST['show'])) {
+	$dir =  'load'.DIRECTORY_SEPARATOR;
+	$file_list = scandir($dir);
+	$img_ext = '/(png|gif|jpeg|jpg)/i';
+
+	if (!isset($_SESSION['file_list'])) {
+		$_SESSION['file_list'] = [];
+	}
+
+	for ( $i = 2; $i < count($file_list); $i++){
+		$value = $file_list[$i];
+		$file_size = filesize($dir.$value);
+		$new_file_size = toNormalSize($file_size);
+		$temp = explode('.', $value);
+		$extension = end($temp);
+		$preview = '';
+		if (preg_match($img_ext, $extension)){
+			$preview = '<img src="'.$dir.$value.'" style="height: 50px" alt="'.$value.'">';
+		}
+
+		$row = $preview.'<a href="'.$dir.$value.'" download>'.$value.'</a>'.$new_file_size;
+		array_push($_SESSION['file_list'], $row);
+	}
+	header('Location: index.php'); 
 }
 
 if (isset($_GET['chess_submit'])) {
@@ -28,7 +51,7 @@ if (isset($_GET['chess_submit'])) {
 	header('Location: index.php'); 
 }
 
-if (isset($_POST['sum_submit'])){
+if (isset($_POST['sum_submit'])) {
 	$the_number = $_POST['number_to_sum'];
 	$pos_number = (string)abs($the_number);
 	$result = str_split($pos_number);
@@ -36,7 +59,7 @@ if (isset($_POST['sum_submit'])){
 	header('Location: index.php'); 
 }
 
-if (isset($_POST['arr_submit'])){
+if (isset($_POST['arr_submit'])) {
 	$initial_arr = [];
 	for ($i=0; $i < 100; $i++) { 
 		array_push($initial_arr, rand(0, 10));
@@ -51,7 +74,7 @@ if (isset($_POST['arr_submit'])){
 	header('Location: index.php');
 }
 
-if (isset($_POST['text_submit'])){
+if (isset($_POST['text_submit'])) {
 	$text = $_POST['text'];
 	$rows_number = count(preg_split('/\n/', $text));
 	$chars_numbers = iconv_strlen($text) - ($rows_number - 1) * 2;
@@ -59,4 +82,18 @@ if (isset($_POST['text_submit'])){
 	$_SESSION['report_text'] = array($rows_number, $chars_numbers, $spaces_number, $text);
 	header('Location: index.php');
 }
+
+function toNormalSize ($value) {
+	$human_frendly_sizes = [' Byte(s)', ' KB', ' MB', ' GB'];
+	$temp_size = strlen($value);
+	$size_counter = 0;
+	while ($temp_size > 3) {
+		$value = intdiv($value, 1024);
+		$temp_size = strlen($value);
+		$size_counter++;
+	}
+	$res = '('.$value.$human_frendly_sizes[$size_counter].')';
+	return $res;
+}
+
 ?>

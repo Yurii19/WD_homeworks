@@ -31,7 +31,7 @@ isset($_SESSION['visit_number']) ? $_SESSION['visit_number']++ : $_SESSION['visi
     <?php
     $res = 0;
     for ($i=-1000; $i <= 1000; $i++) { 
-      if (preg_match("/[237]/", substr($i, -1))) {
+      if (preg_match('/^\-?\w*[2,3,7]$/', $i)) {
        $res += $i;
      }
    };
@@ -44,38 +44,16 @@ isset($_SESSION['visit_number']) ? $_SESSION['visit_number']++ : $_SESSION['visi
   <small>Here you can upload and download a files </small>
   <form action="script.php" method="post" enctype="multipart/form-data"> <!-- enctype=multipart/form-data -->
     <input type="file" name="uploadfile" >
-    <input type="submit" value="Download" id="load_submit">
+    <input type="submit" value="Download" id="load_submit" name="dawnload">
     <input type="submit" value="Show files" name="show">
   </form>
   <?php
-  if(isset($_SESSION['loader']) & $_SESSION['loader']){
-    $_SESSION['loader'] = false;
-     $array_downloaded = scandir("load/");
-  for ($i=2; $i < count($array_downloaded); $i++) {  
-    $file_path = 'load/'.$array_downloaded[$i];
-    $size = filesize($file_path);
-    $file_info = '';
-    $file_length = strlen($size);
-    if ($file_length < 4 ){
-      $file_info = $size.' Bytes';
-    } else if ($file_length < 7 & $file_length > 3) {
-      $in_kilobytes = $size/1024;
-      $point_position = strpos($in_kilobytes, '.') + 2;
-      $file_info = substr($in_kilobytes, 0, $point_position).' KB';
-    }else if ($file_length < 10 & $file_length > 6) {
-      $in_kilobytes = $size/(1024*1024);
-      $point_position = strpos($in_kilobytes, '.') + 2;
-      $file_info = substr($in_kilobytes, 0, $point_position).' MB';
-    }
-    $img_type  = explode('.', $array_downloaded[$i]);
-    $img_ext = '/(png|gif|jpeg|jpg)/i';
-    if (preg_match($img_ext, $img_type[1])){
-      echo '<img src="'.$file_path.'" style="height: 50px" alt="'.$array_downloaded[$i].'">';
-    }
-    echo '<p><a href="'.$file_path.'" download>'.$array_downloaded[$i].' ('.$file_info.')</a></p>';
-    echo '<hr/>';
+  if (isset($_SESSION['file_list']) && $_SESSION['show']){
+  foreach ($_SESSION['file_list'] as $key => $value) {
+    echo '<div class="file-box">'.$value.'</div><br>';
   }
-  }
+  unset($_SESSION['file_list']);
+}
  
   ?>
 </section>
