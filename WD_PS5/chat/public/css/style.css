@@ -1,0 +1,91 @@
+html {
+	background-color: #b9c783;
+}
+.form-container {
+	justify-content: center;
+	display: flex;
+	/*border: 1px solid grey;*/
+	
+}
+.form-wrapper {
+	/*justify-content: center;*/
+	flex-direction: column;
+	display: flex;
+	width: 25%;
+	/*border: 1px dotted blue;*/
+}
+form {
+	padding: 0 20px 0 20px;
+	display: flex;
+	flex-direction: column;
+	/*border:1px solid red;*/
+}
+.user-input {
+	/*opacity: 0.6;*/
+	padding-left: 10px;
+	font-weight: bold;
+	background-color: #fffecd;
+	border-style: none;
+	font-family: "Montserrat", sans-serif;
+	height: 30px;
+	margin-bottom: 30px;
+
+}
+label {
+	opacity: 0.6;
+	font-weight: bold;
+	margin-bottom: 7px;
+	font-family: "Montserrat", sans-serif;
+}
+#submit-messege {
+	width: 20%;
+	margin-top: 19px;
+	font-family: "Montserrat", sans-serif;
+	color: #fffecd;
+	background-color: #635960;
+	border-style: none;
+	height: 32px;
+	margin-bottom: 30px;
+}
+#submit {
+	font-family: "Montserrat", sans-serif;
+	color: #fffecd;
+	background-color: #635960;
+	border-style: none;
+	height: 32px;
+	margin-top: 19px;
+}
+.chat-name {
+	font-weight: 100;
+	color:  #fffecd;
+	font-size: 4.4em;
+	text-align: center;
+	font-family: "Pacifico", sans-serif;
+}
+label, input {
+	display: block;
+}
+.user-control {
+	display: flex;
+	flex-direction: row;
+}
+.chat-wrapper {
+	width: 50%;
+}
+.screen {
+	font-family: "Montserrat", sans-serif;
+	overflow-y:scroll;
+	background-color: #fffecd;
+	height: 270px;
+}
+strong {
+	font-size: 1.1em;
+}
+#user-messege {
+	margin-right: 5%;
+	width: 75%;
+	margin-top: 19px;
+}
+.error {
+	color: red;
+}
