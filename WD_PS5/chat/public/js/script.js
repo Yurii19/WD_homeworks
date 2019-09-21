@@ -1,44 +1,59 @@
 
-window.onload = init;
 
-function init(){
-	const sender = document.getElementById('submit-messege');
-	sender.addEventListener('click', sendMessage);
-}
+$(document).ready(function() {   
 
-function sendMessage() {
-	var req = getXmlHttp()  ;
-	var statusElem = document.getElementById('vote_status') ;
-	
-	req.onreadystatechange = function() {  
-		if (req.readyState == 4) { 
-			statusElem.innerHTML = req.statusText // показать статус (Not Found, ОК..)
-			if(req.status == 200) { 
-				alert("Ответ сервера: "+req.responseText);
-			}
-		}
+	const toFreshMessage = function() {
+		$('#messeges-container').scrollTop(9999);
 	}
 
-	req.open('GET', '/ajax_intro/vote.php', true);  
-	req.send(null);  // отослать запрос
-	statusElem.innerHTML = 'Ожидаю ответа сервера...' 
-}
+	renderLastMessage();
 
+	function renderLastMessage() {
+		$('#messeges-container').load('/chat/app/ajaxhandler.php');
+		setTimeout(toFreshMessage, 30);
+	}
 
-//function from https://javascript.ru/ajax/intro
-function getXmlHttp(){
-  var xmlhttp;
-  try {
-    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-  } catch (e) {
-    try {
-      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    } catch (E) {
-      xmlhttp = false;
-    }
-  }
-  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-    xmlhttp = new XMLHttpRequest();
-  }
-  return xmlhttp;
-}
+	function renderMessages() {
+		$.ajax({
+			url: '/chat/app/ajaxhandler.php',
+		})
+		.done(function(data) {
+			if (data === '') {
+				return;
+			}
+			$('#messeges-container').empty();
+			$('#messeges-container').append(data);
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	}
+
+	setInterval(renderMessages, 1000);
+	
+	$('#submit-messege').on('click', function(event) {
+		const userMessage = $('#user-messege').val();
+		$('#user-messege').val('');
+		$.ajax({
+			url: '/chat/app/handler.php',
+			type: 'POST',
+			data: {'message': userMessage},
+		})
+		.done(function(data) {
+			renderLastMessage();
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+		event.preventDefault();
+	});
+});
